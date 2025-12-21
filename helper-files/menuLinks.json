@@ -1,0 +1,65 @@
+[
+    {
+        "ordinal": 1,
+        "icon": "dashboard",
+        "title": "dashboard",
+        "path": "dashboard",
+        "enabled": true
+    },
+    {
+        "ordinal": 4,
+        "icon": "time-entry",
+        "title": "time_entry",
+        "path": "timesheet",
+        "enabled": true
+    },
+    {
+        "ordinal": 2,
+        "icon": "employees",
+        "title": "my_information",
+        "path": "my-information",
+        "enabled": true
+    },
+    {
+        "ordinal": 3,
+        "icon": "launchpad",
+        "title": "my_payslips",
+        "path": "my-payslips",
+        "enabled": true
+    },
+    {
+        "ordinal": 5,
+        "icon": "leaves",
+        "title": "leaves",
+        "path": "leaves",
+        "enabled": true
+    },
+    {
+        "ordinal": 7,
+        "icon": "organizational-chart",
+        "title": "organizational_chart",
+        "path": "orgchart",
+        "enabled": true
+    },
+    {
+        "ordinal": 6,
+        "icon": "benefits",
+        "title": "benefits",
+        "path": "benefits",
+        "enabled": true
+    },
+    {
+        "ordinal": 8,
+        "icon": "my-team",
+        "title": "my_team",
+        "path": "my-team",
+        "enabled": true
+    },
+    {
+        "ordinal": 9,
+        "icon": "documents",
+        "title": "documents",
+        "path": "docs",
+        "enabled": false
+    }
+]
