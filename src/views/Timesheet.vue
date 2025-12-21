@@ -4,10 +4,23 @@
       <h1 class="text-2xl font-bold text-foreground">Timesheet</h1>
     </div>
     <div class="p-6">
-      <p class="text-muted-foreground">Manage your time entries</p>
+      <Empty>
+        <EmptyMedia variant="icon">
+          <Clock class="size-6" />
+        </EmptyMedia>
+        <EmptyHeader>
+          <EmptyTitle>No time entries</EmptyTitle>
+          <EmptyDescription>
+            Your time entries will appear here. Start tracking your time to see entries.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Clock } from 'lucide-vue-next'
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from '@/components/ui/empty'
+</script>
 
