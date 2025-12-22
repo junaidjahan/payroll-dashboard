@@ -12,7 +12,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
       <header class="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
         <SidebarTrigger class="-ml-1" />
       </header>
-      <main class="flex-1 overflow-auto bg-[var(--color-base-bg)]">
+      <main class="flex-1 overflow-auto bg-nexum-100">
         <RouterView />
       </main>
     </SidebarInset>
