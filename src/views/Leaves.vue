@@ -4,10 +4,23 @@
       <h1 class="text-2xl font-bold text-foreground">Leaves</h1>
     </div>
     <div class="p-6">
-      <p class="text-muted-foreground">View and request leave</p>
+      <Empty>
+        <EmptyMedia variant="icon">
+          <Plane class="size-6" />
+        </EmptyMedia>
+        <EmptyHeader>
+          <EmptyTitle>No leave records</EmptyTitle>
+          <EmptyDescription>
+            Your leave requests and history will be displayed here.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Plane } from 'lucide-vue-next'
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from '@/components/ui/empty'
+</script>
 

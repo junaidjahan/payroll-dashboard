@@ -4,10 +4,23 @@
       <h1 class="text-2xl font-bold text-foreground">Organizational Chart</h1>
     </div>
     <div class="p-6">
-      <p class="text-muted-foreground">View the organizational structure</p>
+      <Empty>
+        <EmptyMedia variant="icon">
+          <Network class="size-6" />
+        </EmptyMedia>
+        <EmptyHeader>
+          <EmptyTitle>No organizational chart</EmptyTitle>
+          <EmptyDescription>
+            The organizational structure will be displayed here once available.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Network } from 'lucide-vue-next'
+import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from '@/components/ui/empty'
+</script>
 
