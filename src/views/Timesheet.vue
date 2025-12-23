@@ -1,26 +1,17 @@
 <template>
-  <div class="min-h-screen bg-[var(--color-base-bg)]">
-    <div class="bg-[var(--color-base-secondary-50)] px-6 py-4 border-b border-border">
-      <h1 class="text-2xl font-bold text-foreground">Timesheet</h1>
+  <div class="min-h-screen p-8 flex flex-col">
+    <!-- Page Header -->
+    <div class="px-6 mb-5 border-b border-gray-100">
+      <h1 class="text-2xl font-semibold">Timesheet</h1>
     </div>
-    <div class="p-6">
-      <Empty>
-        <EmptyMedia variant="icon">
-          <Clock class="size-6" />
-        </EmptyMedia>
-        <EmptyHeader>
-          <EmptyTitle>No time entries</EmptyTitle>
-          <EmptyDescription>
-            Your time entries will appear here. Start tracking your time to see entries.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
+
+    <!-- Empty State -->
+    <div class="flex-1 flex items-center justify-center">
+      <EmptyContent />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Clock } from 'lucide-vue-next'
-import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from '@/components/ui/empty'
+import { EmptyContent } from '@/components/shared'
 </script>
-

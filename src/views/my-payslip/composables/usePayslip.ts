@@ -26,24 +26,6 @@ export function usePayslip() {
   // Load payslips data
   const payslips = payslipsData as Payslip[]
 
-  // Format period (e.g., "April 2025")
-  const formatPeriod = (dateStr: string) => {
-    const date = new Date(dateStr)
-    return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
-  }
-
-  // Format currency
-  const formatCurrency = (amount: number, currency: string) => {
-    return (
-      new Intl.NumberFormat('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(amount) +
-      ' ' +
-      currency
-    )
-  }
-
   // Get gross salary from payslip
   const getGrossSalary = (payslip: Payslip, currency: string) => {
     const entry = payslip.payslipEntries.find((e) => e.key === 'GROSS' && e.currency === currency)
@@ -114,8 +96,6 @@ export function usePayslip() {
 
   return {
     payslips,
-    formatPeriod,
-    formatCurrency,
     getGrossSalary,
     getNetPay,
     getCurrencies,
