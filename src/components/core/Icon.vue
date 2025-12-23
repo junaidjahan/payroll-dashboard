@@ -46,8 +46,10 @@ onMounted(() => {
   loadIcon()
 })
 
-watch(() => props.name, () => {
-  loadIcon()
-})
+watch(
+  () => props.name,
+  () => {
+    loadIcon()
+  },
+)
 </script>
-

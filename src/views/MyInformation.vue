@@ -1,25 +1,17 @@
 <template>
-    <div class="min-h-screen bg-[var(--color-base-bg)]">
-        <div class="bg-[var(--color-base-secondary-50)] px-6 py-4 border-b border-border">
-            <h1 class="text-2xl font-bold text-foreground">My Information</h1>
-        </div>
-        <div class="p-6">
-            <Empty>
-                <EmptyMedia variant="icon">
-                    <User class="size-6" />
-                </EmptyMedia>
-                <EmptyHeader>
-                    <EmptyTitle>No information available</EmptyTitle>
-                    <EmptyDescription>
-                        Your personal information will be displayed here once it's available.
-                    </EmptyDescription>
-                </EmptyHeader>
-            </Empty>
-        </div>
+  <div class="min-h-screen p-8 flex flex-col">
+    <!-- Page Header -->
+    <div class="px-6 mb-5 border-b border-gray-100">
+      <h1 class="text-2xl font-semibold">My Information</h1>
     </div>
+
+    <!-- Empty State -->
+    <div class="flex-1 flex items-center justify-center">
+      <EmptyContent />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { User } from 'lucide-vue-next'
-import { Empty, EmptyHeader, EmptyMedia, EmptyTitle, EmptyDescription } from '@/components/ui/empty'
+import { EmptyContent } from '@/components/shared'
 </script>
