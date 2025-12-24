@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen p-8">
+  <div class="min-h-screen p-4 md:p-8">
     <!-- Page Header -->
-    <div class="px-6 mb-5 border-b border-gray-100">
+    <div class="px-4 md:px-6 mb-5 border-b border-gray-100">
       <h1 class="text-2xl font-semibold">My payslips</h1>
     </div>
 
@@ -98,16 +98,16 @@ const showSalaryEvolutionModal = ref(false)
 const openMenuId = ref<number | null>(null)
 
 // Get unique currencies from payslips
-const currencies = computed(() => getCurrencies(payslips))
+const currencies = computed(() => getCurrencies(payslips.value))
 
 // Get payslip count by currency
 const getPayslipCountByCurrencyComputed = (currency: string) => {
-  return getPayslipCountByCurrency(payslips, currency)
+  return getPayslipCountByCurrency(payslips.value, currency)
 }
 
 // Filter payslips by active currency and sort by date (newest first)
 const filteredPayslips = computed(() => {
-  return filterPayslipsByCurrency(payslips, activeCurrency.value)
+  return filterPayslipsByCurrency(payslips.value, activeCurrency.value)
 })
 
 // Get active year from filtered payslips

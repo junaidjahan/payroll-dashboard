@@ -1,54 +1,188 @@
-# payroll-dashboard
+# Payroll Dashboard
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern, responsive employee self-service payroll dashboard built with Vue 3, TypeScript, and Tailwind CSS. This application provides employees with easy access to their payslips, benefits, leave management, timesheet tracking, and organizational information.
 
-## Recommended IDE Setup
+## 🛠️ Tech Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Framework**: Vue 3 with Composition API
+- **Language**: TypeScript
+- **Build Tool**: Vite 7
+- **Styling**: Tailwind CSS 4
+- **UI Components**: Reka UI (shadcn-vue)
+- **Routing**: Vue Router 4
+- **State Management**: Pinia
+- **Testing**: Vitest
+- **Package Manager**: pnpm
 
-## Recommended Browser Setup
+## 📋 Prerequisites
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Before you begin, ensure you have the following installed:
 
-## Type Support for `.vue` Imports in TS
+- **Node.js**: Version `^20.19.0` or `>=22.12.0`
+- **pnpm**: Latest version (install via `npm install -g pnpm` or `corepack enable`)
+- **Docker** (optional): For containerized deployment
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 🚀 Getting Started
 
-## Customize configuration
+### Option 1: Setup Without Docker
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+#### 1. Clone the repository
 
-## Project Setup
+```bash
+git clone <repository-url>
+cd payroll-dashboard
+```
 
-```sh
+#### 2. Install dependencies
+
+```bash
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+#### 3. Start the development server
 
-```sh
+```bash
 pnpm dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The application will be available at `http://localhost:5173` (or the port shown in your terminal).
 
-```sh
+#### 4. Build for production
+
+```bash
 pnpm build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+The production build will be in the `dist` directory.
 
-```sh
+#### 5. Preview production build
+
+```bash
+pnpm preview
+```
+
+### Option 2: Setup With Docker
+
+#### 1. Build the Docker image
+
+```bash
+docker build -t payroll-dashboard .
+```
+
+#### 2. Run the container
+
+```bash
+docker run -p 8080:80 payroll-dashboard
+```
+
+The application will be available at `http://localhost:8080`.
+
+#### Using Docker Compose (Recommended)
+
+For easier management, use Docker Compose:
+
+```bash
+# Build and start the container
+docker-compose up --build
+
+# Run in detached mode
+docker-compose up -d
+
+# Stop the container
+docker-compose down
+```
+
+The application will be available at `http://localhost:8080`.
+
+## 📁 Project Structure
+
+```
+payroll-dashboard/
+├── public/
+│   └── helper-files/          # Static JSON files (menuLinks, payslips, PDFs)
+├── src/
+│   ├── assets/                # Static assets (icons, styles)
+│   ├── components/
+│   │   ├── core/              # Core components (Icon, SideDrawer)
+│   │   ├── icons/             # Icon components
+│   │   ├── shared/            # Shared components
+│   │   └── ui/                # UI component library
+│   ├── composables/           # Vue composables
+│   ├── router/                # Vue Router configuration
+│   ├── views/                 # Page components
+│   └── main.ts                # Application entry point
+├── Dockerfile                  # Docker configuration
+├── docker-compose.yml         # Docker Compose configuration
+├── nginx.conf                 # Nginx configuration for production
+└── vercel.json                 # Vercel deployment configuration
+```
+
+## ✨ Features
+
+- **💰 My Payslips** - View and manage payslips with:
+  - Multi-currency support
+  - Salary evolution charts
+  - PDF download and print functionality
+  - Detailed payslip breakdowns
+- **📊 Dashboard** - Overview and quick access to key information _(Coming Soon)_
+- **👤 My Information** - Personal employee information _(Coming Soon)_
+- **⏰ Timesheet** - Time entry and tracking _(Coming Soon)_
+- **📅 Leaves** - Leave management and requests _(Coming Soon)_
+- **🎁 Benefits** - Employee benefits overview _(Coming Soon)_
+- **👥 My Team** - Team member information _(Coming Soon)_
+- **📈 Organizational Chart** - Company hierarchy visualization _(Coming Soon)_
+- **📱 Responsive Design** - Works seamlessly on desktop and mobile devices
+- **🎨 Modern UI** - Built with Tailwind CSS and shadcn-vue components
+
+## 🧩 Key Components
+
+### Icon System
+
+Icons are organized as individual Vue components in `src/components/icons/`. Use them via the `Icon` component:
+
+```vue
+<Icon name="dashboard" class="w-4 h-4" />
+```
+
+### Data Loading
+
+The application loads data from JSON files in the `public/helper-files/` directory:
+
+- `menuLinks.json` - Navigation menu configuration
+- `payslips.json` - Payslip data
+
+These files are loaded at runtime via HTTP requests, allowing updates without rebuilding the application.
+
+## 🧪 Testing
+
+Tests are written using Vitest and Vue Test Utils:
+
+```bash
+# Run tests in watch mode
 pnpm test:unit
+
+# Run tests once
+pnpm test:unit --run
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 📝 Code Quality
 
-```sh
-pnpm lint
+### Formatting
+
+Code formatting is handled by Prettier:
+
+```bash
+pnpm format
 ```
+
+## 🎨 Styling
+
+The project uses Tailwind CSS 4 for styling. Custom colors and design tokens are defined in `src/assets/styles/main.css`.
+
+## 🔧 Configuration
+
+### Vite Configuration
+
+Vite configuration can be customized in `vite.config.ts`.
+
+Built with ❤️ using Vue 3 and modern web technologies.

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  payroll-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    container_name: payroll-dashboard
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+
+

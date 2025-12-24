@@ -52,39 +52,47 @@ vi.mock('../components/core/Icon.vue', () => ({
   },
 }))
 
-// Mock menuLinks
-vi.mock('../../../helper-files/menuLinks.json', () => ({
-  default: [
-    {
-      ordinal: 1,
-      icon: 'dashboard',
-      title: 'dashboard',
-      path: 'dashboard',
-      enabled: true,
-    },
-    {
-      ordinal: 2,
-      icon: 'my_information',
-      title: 'my_information',
-      path: 'my-information',
-      enabled: true,
-    },
-    {
-      ordinal: 3,
-      icon: 'my_payslips',
-      title: 'my_payslips',
-      path: 'my-payslips',
-      enabled: true,
-    },
-    {
-      ordinal: 4,
-      icon: 'documents',
-      title: 'documents',
-      path: 'docs',
-      enabled: false,
-    },
-  ],
-}))
+// Mock fetch for menuLinks
+global.fetch = vi.fn((input: RequestInfo | URL) => {
+  const url = typeof input === 'string' ? input : input.toString()
+  if (url === '/helper-files/menuLinks.json') {
+    return Promise.resolve({
+      ok: true,
+      json: () =>
+        Promise.resolve([
+          {
+            ordinal: 1,
+            icon: 'dashboard',
+            title: 'dashboard',
+            path: 'dashboard',
+            enabled: true,
+          },
+          {
+            ordinal: 2,
+            icon: 'my_information',
+            title: 'my_information',
+            path: 'my-information',
+            enabled: true,
+          },
+          {
+            ordinal: 3,
+            icon: 'my_payslips',
+            title: 'my_payslips',
+            path: 'my-payslips',
+            enabled: true,
+          },
+          {
+            ordinal: 4,
+            icon: 'documents',
+            title: 'documents',
+            path: 'docs',
+            enabled: false,
+          },
+        ]),
+    } as Response)
+  }
+  return Promise.reject(new Error('Unknown URL'))
+}) as typeof fetch
 
 // Mock useHelper composable
 vi.mock('../composables/useHelper', () => ({

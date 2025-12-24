@@ -1,0 +1,35 @@
+<template>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    v-bind="$attrs"
+    class="inline-flex items-center justify-center"
+  >
+    <g clip-path="url(#clip0_521_2878)">
+      <path
+        d="M8 4.75C8.69036 4.75 9.25 4.19036 9.25 3.5C9.25 2.80964 8.69036 2.25 8 2.25C7.30964 2.25 6.75 2.80964 6.75 3.5C6.75 4.19036 7.30964 4.75 8 4.75Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8 9.25C8.69036 9.25 9.25 8.69036 9.25 8C9.25 7.30964 8.69036 6.75 8 6.75C7.30964 6.75 6.75 7.30964 6.75 8C6.75 8.69036 7.30964 9.25 8 9.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8 13.75C8.69036 13.75 9.25 13.1904 9.25 12.5C9.25 11.8096 8.69036 11.25 8 11.25C7.30964 11.25 6.75 11.8096 6.75 12.5C6.75 13.1904 7.30964 13.75 8 13.75Z"
+        fill="currentColor"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_521_2878">
+        <rect width="2.5" height="11.5" fill="currentColor" transform="translate(6.75 2.25)" />
+      </clipPath>
+    </defs>
+  </svg>
+</template>
+
+<script setup lang="ts">
+// Icon: vertical-dots
+</script>
