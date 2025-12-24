@@ -31,7 +31,7 @@ async function loadPayslips(): Promise<Payslip[]> {
   if (payslipsCache) {
     return payslipsCache
   }
-  
+
   if (payslipsPromise) {
     return payslipsPromise
   }

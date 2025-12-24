@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen p-8 flex flex-col">
+  <div class="min-h-screen p-4 md:p-8 flex flex-col">
     <!-- Page Header -->
-    <div class="px-6 mb-5 border-b border-gray-100">
+    <div class="px-4 md:px-6 mb-5 border-b border-gray-100">
       <h1 class="text-2xl font-semibold">My Information</h1>
     </div>
 

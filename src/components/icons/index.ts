@@ -23,6 +23,7 @@ import PlusIcon from './PlusIcon.vue'
 import SalaryEvolutionIcon from './SalaryEvolutionIcon.vue'
 import TimeEntryIcon from './TimeEntryIcon.vue'
 import VerticalDotsIcon from './VerticalDotsIcon.vue'
+import MenuIcon from './MenuIcon.vue'
 
 // Icon registry mapping icon names (kebab-case) to components
 export const iconRegistry: Record<string, ReturnType<typeof defineComponent>> = {
@@ -48,6 +49,7 @@ export const iconRegistry: Record<string, ReturnType<typeof defineComponent>> = 
   'salary-evolution': SalaryEvolutionIcon,
   'time-entry': TimeEntryIcon,
   'vertical-dots': VerticalDotsIcon,
+  menu: MenuIcon,
 }
 
 // Export all icon components
@@ -74,6 +76,5 @@ export {
   SalaryEvolutionIcon,
   TimeEntryIcon,
   VerticalDotsIcon,
+  MenuIcon,
 }
-
-

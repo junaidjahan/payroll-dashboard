@@ -51,22 +51,22 @@
               </span>
             </td>
             <td
-              class="px-4 py-3 border-t border-b border-nexum-50  group-hover:border-base-secondary-950 transition-colors">
-              <span class="text-sm text-base-secondary-950!">
+              class="px-4 py-3 border-t border-b border-nexum-50 group-hover:border-base-secondary-950 transition-colors">
+              <span class="text-sm text-base-secondary-950! truncate max-w-[50px]">
                 {{ payslip.fileAttachment.file.label }}
               </span>
             </td>
             <td
               class="px-4 py-3 border-t border-b border-nexum-50 group-hover:border-base-secondary-950 transition-colors">
               <span
-                class="inline-flex items-center px-3 py-1 rounded-sm text-xs font-medium bg-gray-light text-base-secondary-950">
+                class="inline-flex items-center sm:px-3 px-2 py-1 rounded-sm text-xs font-medium bg-gray-light text-base-secondary-950">
                 {{ formatCurrency(getGrossSalary(payslip, activeCurrency), activeCurrency) }}
               </span>
             </td>
             <td
               class="px-4 py-3 border-t border-b border-nexum-50 group-hover:border-base-secondary-950 transition-colors">
               <span
-                class="inline-flex items-center px-3 py-1 rounded-sm text-xs font-medium bg-success-100 text-success-200">
+                class="inline-flex items-center sm:px-3 px-2 py-1 rounded-sm text-xs font-medium bg-success-100 text-success-200">
                 {{ formatCurrency(getNetPay(payslip, activeCurrency), activeCurrency) }}
               </span>
             </td>

@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import Sidebar from './components/core/SideDrawer.vue'
+import { SideDrawer, MobileHeader } from './components/core'
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 </script>
 
 <template>
   <SidebarProvider>
-    <Sidebar />
+    <SideDrawer />
     <SidebarInset>
-      <!-- Mobile trigger button -->
-      <header class="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:hidden">
-        <SidebarTrigger class="-ml-1" />
-      </header>
+      <MobileHeader />
       <main class="flex-1 overflow-auto bg-nexum-100">
         <RouterView />
       </main>

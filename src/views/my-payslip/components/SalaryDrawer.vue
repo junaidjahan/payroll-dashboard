@@ -3,20 +3,21 @@
     <DrawerContent class="min-h-[94vh]! rounded-t-4xl! focus:outline-none sm:max-w-[94%] mx-auto"
       overlayClass="bg-base-secondary-950/77">
       <!-- Header -->
-      <div class="flex items-center justify-between px-14 py-8 border-b border-b-base-secondary-950">
-        <div class="flex items-center gap-4">
+      <div class="flex items-center justify-between sm:px-14 px-4 sm:py-8 py-5 border-b border-b-base-secondary-950">
+        <div class="flex items-center sm:gap-4 gap-3">
           <!-- Company Name -->
-          <span class="text-base-secondary-950 text-sm">Mercans USA Ltd.</span>
+          <span class="text-base-secondary-950 text-xs sm:text-sm max-sm:max-w-[80px]">Mercans USA Ltd.</span>
 
           <!-- Vertical Separator -->
           <div class="w-px h-12 bg-base-secondary-950"></div>
 
           <!-- Title Section -->
           <div class="flex flex-col">
-            <h2 class="text-2xl font-semibold text-base-secondary-950">
+            <h2
+              class="text-lg sm:text-2xl max-sm:max-w-[200px] max-sm:leading-tight font-semibold text-base-secondary-950">
               Gross/Net Salary Evolution
             </h2>
-            <span class="text-xs text-base-secondary-950">TF2019 - Ted Ferguson</span>
+            <span class="text-xs sm:text-sm text-base-secondary-950 max-sm:mt-1">TF2019 - Ted Ferguson</span>
           </div>
         </div>
 
