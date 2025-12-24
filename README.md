@@ -2,6 +2,8 @@
 
 A modern, responsive employee self-service payroll dashboard built with Vue 3, TypeScript, and Tailwind CSS. This application provides employees with easy access to their payslips, benefits, leave management, timesheet tracking, and organizational information.
 
+🌐 **Live Demo**: [https://payroll-dashboard-nu.vercel.app](https://payroll-dashboard-nu.vercel.app)
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Vue 3 with Composition API
