@@ -98,16 +98,16 @@ const showSalaryEvolutionModal = ref(false)
 const openMenuId = ref<number | null>(null)
 
 // Get unique currencies from payslips
-const currencies = computed(() => getCurrencies(payslips))
+const currencies = computed(() => getCurrencies(payslips.value))
 
 // Get payslip count by currency
 const getPayslipCountByCurrencyComputed = (currency: string) => {
-  return getPayslipCountByCurrency(payslips, currency)
+  return getPayslipCountByCurrency(payslips.value, currency)
 }
 
 // Filter payslips by active currency and sort by date (newest first)
 const filteredPayslips = computed(() => {
-  return filterPayslipsByCurrency(payslips, activeCurrency.value)
+  return filterPayslipsByCurrency(payslips.value, activeCurrency.value)
 })
 
 // Get active year from filtered payslips

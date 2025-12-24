@@ -1,4 +1,4 @@
-import payslipsData from '../../../../helper-files/payslips.json'
+import { ref, onMounted } from 'vue'
 
 export interface PayslipEntry {
   key: string
@@ -22,9 +22,47 @@ export interface Payslip {
   payslipEntries: PayslipEntry[]
 }
 
+// Cache for payslips data
+let payslipsCache: Payslip[] | null = null
+let payslipsPromise: Promise<Payslip[]> | null = null
+
+// Load payslips data from public folder
+async function loadPayslips(): Promise<Payslip[]> {
+  if (payslipsCache) {
+    return payslipsCache
+  }
+  
+  if (payslipsPromise) {
+    return payslipsPromise
+  }
+
+  payslipsPromise = fetch('/helper-files/payslips.json')
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Failed to load payslips')
+      }
+      return response.json()
+    })
+    .then((data) => {
+      payslipsCache = data as Payslip[]
+      return payslipsCache
+    })
+    .catch((error) => {
+      console.error('Error loading payslips:', error)
+      payslipsPromise = null
+      return []
+    })
+
+  return payslipsPromise
+}
+
 export function usePayslip() {
-  // Load payslips data
-  const payslips = payslipsData as Payslip[]
+  const payslips = ref<Payslip[]>([])
+
+  // Load payslips data on mount
+  onMounted(async () => {
+    payslips.value = await loadPayslips()
+  })
 
   // Get gross salary from payslip
   const getGrossSalary = (payslip: Payslip, currency: string) => {
@@ -39,38 +77,38 @@ export function usePayslip() {
   }
 
   // Get unique currencies from payslips
-  const getCurrencies = (payslips: Payslip[]) => {
+  const getCurrencies = (payslipsList: Payslip[]) => {
     const currencySet = new Set<string>()
-    payslips.forEach((p) => {
+    payslipsList.forEach((p) => {
       p.payslipEntries.forEach((e) => currencySet.add(e.currency))
     })
     return Array.from(currencySet).sort()
   }
 
   // Get payslip count by currency
-  const getPayslipCountByCurrency = (payslips: Payslip[], currency: string) => {
-    return payslips.filter((p) => p.payslipEntries.some((e) => e.currency === currency)).length
+  const getPayslipCountByCurrency = (payslipsList: Payslip[], currency: string) => {
+    return payslipsList.filter((p) => p.payslipEntries.some((e) => e.currency === currency)).length
   }
 
   // Filter payslips by currency and sort by date (newest first)
-  const filterPayslipsByCurrency = (payslips: Payslip[], currency: string) => {
-    return payslips
+  const filterPayslipsByCurrency = (payslipsList: Payslip[], currency: string) => {
+    return payslipsList
       .filter((p) => p.payslipEntries.some((e) => e.currency === currency))
       .sort((a, b) => new Date(b.payrollDate).getTime() - new Date(a.payrollDate).getTime())
   }
 
   // Get active year from filtered payslips
-  const getActiveYear = (payslips: Payslip[]) => {
-    if (payslips.length === 0) return new Date().getFullYear()
-    const firstPayslip = payslips[0]
+  const getActiveYear = (payslipsList: Payslip[]) => {
+    if (payslipsList.length === 0) return new Date().getFullYear()
+    const firstPayslip = payslipsList[0]
     if (!firstPayslip) return new Date().getFullYear()
     const date = new Date(firstPayslip.payrollDate)
     return date.getFullYear()
   }
 
   // Salary evolution data for modal
-  const getSalaryEvolutionData = (payslips: Payslip[], currency: string) => {
-    const data = payslips
+  const getSalaryEvolutionData = (payslipsList: Payslip[], currency: string) => {
+    const data = payslipsList
       .filter((p) => p.payslipEntries.some((e) => e.currency === currency))
       .sort((a, b) => new Date(a.payrollDate).getTime() - new Date(b.payrollDate).getTime())
       .map((p) => {
@@ -89,8 +127,8 @@ export function usePayslip() {
   }
 
   // Max salary for chart scaling
-  const maxSalary = (payslips: Payslip[], currency: string) => {
-    const data = getSalaryEvolutionData(payslips, currency)
+  const maxSalary = (payslipsList: Payslip[], currency: string) => {
+    const data = getSalaryEvolutionData(payslipsList, currency)
     return Math.max(...data.map((d) => d.gross), 1)
   }
 

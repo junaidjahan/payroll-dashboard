@@ -1,52 +1,55 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createRouter, createWebHistory } from 'vue-router'
+import { ref } from 'vue'
 import MyPayslips from '../views/my-payslip/MyPayslips.vue'
 import type { Payslip } from '../views/my-payslip/composables/usePayslip'
+
+const mockPayslips: Payslip[] = [
+  {
+    fileAttachment: {
+      id: 1,
+      file: {
+        mimeType: 'application/pdf',
+        size: 12345,
+        label: 'Payslip_Jan_2025.pdf',
+        description: null,
+        createTime: '2025-01-15T10:00:00Z',
+      },
+      accessToken: 'token1',
+    },
+    payrollDate: '2025-01-15',
+    payslipEntries: [
+      { key: 'GROSS', amount: 5000, currency: 'USD' },
+      { key: 'NET PAY', amount: 4000, currency: 'USD' },
+    ],
+  },
+  {
+    fileAttachment: {
+      id: 2,
+      file: {
+        mimeType: 'application/pdf',
+        size: 12345,
+        label: 'Payslip_Feb_2025.pdf',
+        description: null,
+        createTime: '2025-02-15T10:00:00Z',
+      },
+      accessToken: 'token2',
+    },
+    payrollDate: '2025-02-15',
+    payslipEntries: [
+      { key: 'GROSS', amount: 5000, currency: 'USD' },
+      { key: 'NET PAY', amount: 4000, currency: 'USD' },
+      { key: 'GROSS', amount: 4500, currency: 'EUR' },
+      { key: 'NET PAY', amount: 3600, currency: 'EUR' },
+    ],
+  },
+]
 
 // Mock the composables
 vi.mock('../views/my-payslip/composables/usePayslip', () => ({
   usePayslip: vi.fn(() => ({
-    payslips: [
-      {
-        fileAttachment: {
-          id: 1,
-          file: {
-            mimeType: 'application/pdf',
-            size: 12345,
-            label: 'Payslip_Jan_2025.pdf',
-            description: null,
-            createTime: '2025-01-15T10:00:00Z',
-          },
-          accessToken: 'token1',
-        },
-        payrollDate: '2025-01-15',
-        payslipEntries: [
-          { key: 'GROSS', amount: 5000, currency: 'USD' },
-          { key: 'NET PAY', amount: 4000, currency: 'USD' },
-        ],
-      },
-      {
-        fileAttachment: {
-          id: 2,
-          file: {
-            mimeType: 'application/pdf',
-            size: 12345,
-            label: 'Payslip_Feb_2025.pdf',
-            description: null,
-            createTime: '2025-02-15T10:00:00Z',
-          },
-          accessToken: 'token2',
-        },
-        payrollDate: '2025-02-15',
-        payslipEntries: [
-          { key: 'GROSS', amount: 5000, currency: 'USD' },
-          { key: 'NET PAY', amount: 4000, currency: 'USD' },
-          { key: 'GROSS', amount: 4500, currency: 'EUR' },
-          { key: 'NET PAY', amount: 3600, currency: 'EUR' },
-        ],
-      },
-    ] as Payslip[],
+    payslips: ref(mockPayslips),
     getCurrencies: (payslips: Payslip[]) => {
       const currencySet = new Set<string>()
       payslips.forEach((p) => {

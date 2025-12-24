@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterLink } from 'vue-router'
 import Icon from '@/components/core/Icon.vue'
@@ -146,7 +146,6 @@ import {
   SidebarMenuButton,
   useSidebar as useSidebarContext,
 } from '@/components/ui/sidebar'
-import menuLinks from '../../../helper-files/menuLinks.json'
 import { useHelper } from '@/composables'
 
 interface MenuLink {
@@ -161,9 +160,26 @@ const route = useRoute()
 const { toggleSidebar, state } = useSidebarContext()
 const isCollapsed = computed(() => state.value === 'collapsed')
 const { formatTitle } = useHelper()
+
+const menuLinks = ref<MenuLink[]>([])
+
+// Load menu links from public folder
+onMounted(async () => {
+  try {
+    const response = await fetch('/helper-files/menuLinks.json')
+    if (response.ok) {
+      menuLinks.value = await response.json()
+    } else {
+      console.error('Failed to load menu links')
+    }
+  } catch (error) {
+    console.error('Error loading menu links:', error)
+  }
+})
+
 // All links sorted by ordinal (including disabled)
 const allLinks = computed(() => {
-  return (menuLinks as MenuLink[]).sort((a, b) => a.ordinal - b.ordinal)
+  return menuLinks.value.sort((a, b) => a.ordinal - b.ordinal)
 })
 
 const isActive = (path: string) => {
